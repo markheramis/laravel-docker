@@ -1,0 +1,29 @@
+# For more information: https://laravel.com/docs/sail
+version: "3.5"
+services:
+  laravel.test:
+    container_name: "wend_app"
+    build:
+        context: ./
+        dockerfile: Dockerfile
+        args:
+          WWWGROUP: "${WWWGROUP:-1000}"
+    image: wend/laravel
+    environment:
+      ARTISAN_MIGRATE: "${ARTISAN_MIGRATE:-1}"
+      ARTISAN_SEED: "${ARTISAN_SEED:-1}"
+      ARTISAN_SERVE: "${ARTISAN_SERVE:-1}"
+      GIT_REPOSITORY: "${GIT_REPOSITORY}"
+      GIT_BRANCH: "${GIT_BRANCH}"
+    ports:
+      - "${APP_HTTP_PORT:-8000}:8000"
+    secrets:
+      - id_rsa
+    networks:
+      - "my_network"
+networks:
+  my_network:
+    driver: bridge
+secrets:
+  id_rsa:
+    file: ./id_rsa_shared
