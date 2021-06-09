@@ -10,8 +10,10 @@ else
     git pull origin ${GIT_BRANCH}
 fi
 
-# if setup.sh exists
-if [ ! -d "setup.sh" ]; then
-    # call setup.sh
-    ./setup-script.sh
+FILE=./setup.sh
+if test -f "$FILE"; then
+    chmod 755 setup.sh
+    ./setup.sh
+else
+    echo "No Setup Script"
 fi
