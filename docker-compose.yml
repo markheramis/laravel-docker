@@ -20,6 +20,7 @@ services:
       GIT_BRANCH: "${GIT_BRANCH}"
     volumes:
       - "./start-container:/usr/local/bin/start-container"
+      - "app_volume:/var/www/html"
     ports:
       - "${APP_HTTP_PORT:-8000}:8000"
     secrets:
@@ -29,6 +30,9 @@ services:
 networks:
   my_network:
     driver: bridge
+volumes:
+  app_volume:
+    driver: local
 secrets:
   id_rsa:
     file: ./id_rsa_shared
