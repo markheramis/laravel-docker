@@ -8,6 +8,9 @@ services:
         dockerfile: Dockerfile
         args:
           WWWGROUP: "${WWWGROUP:-1000}"
+          WWWUSER: "${WWWUSER:-sail}"
+          GIT_REPOSITORY: "${GIT_REPOSITORY}"
+          GIT_BRANCH: "${GIT_BRANCH:-master}"
     image: wend/laravel
     environment:
       ARTISAN_MIGRATE: "${ARTISAN_MIGRATE:-1}"
@@ -15,6 +18,8 @@ services:
       ARTISAN_SERVE: "${ARTISAN_SERVE:-1}"
       GIT_REPOSITORY: "${GIT_REPOSITORY}"
       GIT_BRANCH: "${GIT_BRANCH}"
+    volumes:
+      - "./start-container:/usr/local/bin/start-container"
     ports:
       - "${APP_HTTP_PORT:-8000}:8000"
     secrets:
