@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-
 if [[ "${GIT_UPDATE}" = 1 ]]; then
     # verify ssh fingerprint
     rp="$( cut -d ':' -f 1-1 <<< "${GIT_REPOSITORY}" )"; echo "$rp"

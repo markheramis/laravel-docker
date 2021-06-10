@@ -7,16 +7,13 @@ services:
         context: ./
         dockerfile: Dockerfile
         args:
-          WWWGROUP:       "${WWWGROUP:-1000}"
-          WWWUSER:        "${WWWUSER:-sail}"
+          WWWGROUP: "${WWWGROUP:-1000}"
+          WWWUSER: "${WWWUSER:-sail}"
           GIT_REPOSITORY: "${GIT_REPOSITORY}"
-          GIT_BRANCH:     "${GIT_BRANCH:-master}"
+          GIT_BRANCH: "${GIT_BRANCH:-master}"
     image: wend/laravel
     environment:
-      ARTISAN_MIGRATE:    "${ARTISAN_MIGRATE:-1}"
-      ARTISAN_SEED:       "${ARTISAN_SEED:-1}"
-      ARTISAN_SERVE:      "${ARTISAN_SERVE:-1}"
-      GIT_UPDATE:         "1"
+      GIT_UPDATE: "1"
     volumes:
       - "./start-container:/usr/local/bin/start-container"
       - "app_volume:/var/www/html"
