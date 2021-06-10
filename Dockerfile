@@ -9,6 +9,7 @@ ARG GIT_BRANCH="master"
 # environment variables
 ENV ARTISAN_MIGRATE=1
 ENV ARTISAN_SERVE=1
+ENV GIT_UPDATE=0
 # create user and user group
 RUN addgroup -S -g ${WWWGROUP} ${WWWUSER}
 RUN adduser -s /bin/bash --disabled-password -G ${WWWUSER} --uid "1337" ${WWWUSER}

@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
-# verify ssh fingerprint
-rp="$( cut -d ':' -f 1-1 <<< "${GIT_REPOSITORY}" )"; echo "$rp"
-r="$(ssh -T ${rp} )"; echo "$r"
 
-if [ ! -d ".git" ]; then
-    git clone -b ${GIT_BRANCH} ${GIT_REPOSITORY} .
-else
-    git pull origin ${GIT_BRANCH}
+
+if [[ "${GIT_UPDATE}" = 1 ]]; then
+    # verify ssh fingerprint
+    rp="$( cut -d ':' -f 1-1 <<< "${GIT_REPOSITORY}" )"; echo "$rp"
+    r="$(ssh -T ${rp} )"; echo "$r"
+
+    if [ ! -d ".git" ]; then
+        git clone -b ${GIT_BRANCH} ${GIT_REPOSITORY} .
+    else
+        git pull origin ${GIT_BRANCH}
+    fi
 fi
-
 FILE=./setup.sh
 if test -f "$FILE"; then
     chmod 755 setup.sh

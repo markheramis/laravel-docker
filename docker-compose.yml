@@ -16,6 +16,7 @@ services:
       ARTISAN_MIGRATE:    "${ARTISAN_MIGRATE:-1}"
       ARTISAN_SEED:       "${ARTISAN_SEED:-1}"
       ARTISAN_SERVE:      "${ARTISAN_SERVE:-1}"
+      GIT_UPDATE:         "1"
     volumes:
       - "./start-container:/usr/local/bin/start-container"
       - "app_volume:/var/www/html"
@@ -33,4 +34,4 @@ volumes:
     driver: local
 secrets:
   id_rsa:
-    file: ./id_rsa_shared
+    file: ./id_rsa_shared 
