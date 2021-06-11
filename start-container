@@ -13,7 +13,6 @@ if [[ "${GIT_UPDATE}" = 1 ]]; then
 fi
 FILE=./setup.sh
 if test -f "$FILE"; then
-    chmod 755 setup.sh
     ./setup.sh
 else
     echo "No Setup Script"
