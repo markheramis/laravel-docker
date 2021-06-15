@@ -21,7 +21,7 @@ ENV GIT_UPDATE=0
 COPY ./xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 COPY ./start-container /usr/local/bin/start-container
 RUN chmod +x /usr/local/bin/start-container
-USER ${WWWUSER}
+#USER ${WWWUSER}
 WORKDIR /var/www/html
 EXPOSE 8000
 ENTRYPOINT ["start-container"]

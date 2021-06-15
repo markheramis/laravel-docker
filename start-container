@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 if [[ "${GIT_UPDATE}" = 1 ]]; then
+    echo "UPDATING GIT"
     SSH_KEY_FILE=./run/secrets/id_rsa
     # check if id_rsa exists
     if test -f "$SSH_KEY_FILE"; then
         # copy id_rsa file
-        mkdir -p /home/${WWWUSER}/.ssh
-        ln -s /run/secrets/id_rsa /home/${WWWUSER}/.ssh/id_rsa
-        chown -R ${WWWUSER}:${WWWUSER} /home/${WWWUSER}/.ssh
+        mkdir -p /home/$(id -u -n)/.ssh
+        ln -s /run/secrets/id_rsa /home/$(id -u -n)/.ssh/id_rsa
+        chown -R $(id -u -n):$(id -g -n) /home/${WWWUSER}/.ssh
         # verify ssh fingerprint
         rp="$( cut -d ':' -f 1-1 <<< "${GIT_REPOSITORY}" )"; echo "$rp"
         r="$(ssh -T ${rp} )"; echo "$r"
@@ -18,8 +19,10 @@ if [[ "${GIT_UPDATE}" = 1 ]]; then
         git clone -b ${GIT_BRANCH} ${GIT_REPOSITORY} .
     else
         # pull branch
-        git pull origin ${GIT_BRANCH}
+        git pull origin ${GIT_BRANCH}   
     fi
+else
+    echo "NOT UPDATING GIT"
 fi
 
 SETUP_SCRIPT_FILE=./setup.sh
