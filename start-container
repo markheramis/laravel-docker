@@ -8,7 +8,7 @@ if [[ "${GIT_UPDATE}" = 1 ]]; then
         # copy id_rsa file
         mkdir -p /home/$(id -u -n)/.ssh
         ln -s /run/secrets/id_rsa /home/$(id -u -n)/.ssh/id_rsa
-        chown -R $(id -u -n):$(id -g -n) /home/${WWWUSER}/.ssh
+        chown -R $(id -u -n):$(id -g -n) /home/$(id -u -n)/.ssh
         # verify ssh fingerprint
         rp="$( cut -d ':' -f 1-1 <<< "${GIT_REPOSITORY}" )"; echo "$rp"
         r="$(ssh -T ${rp} )"; echo "$r"
