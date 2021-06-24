@@ -30,5 +30,6 @@ SETUP_SCRIPT_FILE=./setup.sh
 if test -f "$SETUP_SCRIPT_FILE"; then
     echo "RUNNING SETUP SCRIPT"
     # execute setup script
+    chmod +x setup.sh
     ./setup.sh
 fi
