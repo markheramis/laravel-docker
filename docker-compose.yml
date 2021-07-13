@@ -12,15 +12,11 @@ services:
           GIT_REPOSITORY: "${GIT_REPOSITORY}"
           GIT_BRANCH: "${GIT_BRANCH:-master}"
     image: wend/laravel
-    environment:
-      GIT_UPDATE: "1"
     volumes:
       - "./start-container:/usr/local/bin/start-container"
       - "app_volume:/var/www/html"
     ports:
       - "${APP_HTTP_PORT:-8000}:8000"
-    secrets:
-      - id_rsa
     networks:
       - "my_network"
 networks:
@@ -29,6 +25,3 @@ networks:
 volumes:
   app_volume:
     driver: local
-secrets:
-  id_rsa:
-    file: ./id_rsa_shared 
