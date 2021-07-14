@@ -11,8 +11,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y  g++ gnupg gosu libssl-dev libcap2-bin libpng-dev curl python2 make nano unzip ca-certificates zip \
-                        git supervisor cron vim htop git
+RUN apg-get install -y apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python2 cron vim
 RUN mkdir -p ~/.gnupg
 RUN chmod 600 ~/.gnupg
 RUN echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
