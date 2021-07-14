@@ -1,17 +1,16 @@
 FROM ubuntu:21.04
-
 LABEL maintainer="Mark Heramis"
 
-ARG WWWUSER=sail
-ARG WWWGROUP=1000
-
+ARG WWWGROUP
 WORKDIR /var/www/html
+
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
+
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update \
-    && apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python2 vim cron \
+    && apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python2 cron vim \
     && mkdir -p ~/.gnupg \
     && chmod 600 ~/.gnupg \
     && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf \
@@ -42,13 +41,8 @@ RUN apt-get update \
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 
-# create cron log
-RUN touch /var/log/cron.log
-
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
-RUN usermod -aG sudo sail
-# RUN usermod -a -G www-data sail
 
 COPY ./php/php.ini /etc/php/8.0/cli/conf.d/99-sail.ini
 COPY ./php/xdebug.ini /etc/php/8.0/mods-available/xdebug.ini
@@ -59,9 +53,8 @@ COPY ./start-container /usr/local/bin/start-container
 RUN chmod 644 /etc/cron.d/app_cron
 RUN chmod +x /usr/local/bin/start-container
 
-RUN chown $WWWUSER:$WWWUSER /var/www/html -R
-
 RUN crontab /etc/cron.d/app_cron
 
 EXPOSE 8000
+
 ENTRYPOINT ["start-container"]
