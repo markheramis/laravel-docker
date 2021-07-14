@@ -8,10 +8,7 @@ services:
         dockerfile: Dockerfile
         args:
           WWWGROUP: "${WWWGROUP:-1000}"
-          WWWUSER: "${WWWUSER:-sail}"
-          GIT_REPOSITORY: "${GIT_REPOSITORY}"
-          GIT_BRANCH: "${GIT_BRANCH:-master}"
-    image: wend/laravel
+    image: laravel/docker
     volumes:
       - "./start-container:/usr/local/bin/start-container"
       - "app_volume:/var/www/html"
