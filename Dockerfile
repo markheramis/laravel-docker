@@ -58,6 +58,11 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 # create cron log
 RUN touch /var/log/cron.log
 
+RUN groupadd --force -g $WWWGROUP sail
+RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
+RUN usermod -aG sudo sail
+# RUN usermod -a -G www-data sail
+
 COPY ./php/php.ini /etc/php/8.0/cli/conf.d/99-sail.ini
 COPY ./php/xdebug.ini /etc/php/8.0/mods-available/xdebug.ini
 COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -66,12 +71,6 @@ COPY ./start-container /usr/local/bin/start-container
 
 RUN chmod 644 /etc/cron.d/app_cron
 RUN chmod +x /usr/local/bin/start-container
-
-RUN groupadd --force -g $WWWGROUP sail
-RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
-
-RUN usermod -aG sudo sail
-# RUN usermod -a -G www-data sail
 
 RUN chown $WWWUSER:$WWWUSER /var/www/html -R
 
