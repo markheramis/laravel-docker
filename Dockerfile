@@ -18,7 +18,7 @@ RUN chmod 600 ~/.gnupg
 RUN echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf
 RUN apt-key adv --homedir ~/.gnupg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E5267A6C
 RUN apt-key adv --homedir ~/.gnupg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C300EE8C
-RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu focal main" > /etc/apt/sources.list.d/ppa_ondrej_php.list
+RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu hirsute main" > /etc/apt/sources.list.d/ppa_ondrej_php.list
 # Installing PHP Dependencies
 RUN apt-get update
 RUN apt-get install -y php8.0-dev php-mbstring php8.0-xml php8.0-bcmath php8.0-cli php8.0-curl php8.0-mysql php8.0-zip php8.0-redis
