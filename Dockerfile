@@ -71,6 +71,7 @@ RUN groupadd --force -g $WWWGROUP $WWWUSER
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 $WWWUSER
 RUN usermod -aG sudo $WWWUSER
 RUN usermod -a -G www-data $WWWUSER
+RUN usermod -u 1000 $WWWUSER
 
 RUN chown $WWWUSER:$WWWUSER /var/www/html -R
 

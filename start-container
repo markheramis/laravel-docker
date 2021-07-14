@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-if [ ! -z "$WWWUSER" ]; then
-    usermod -u $WWWUSER sail
-fi
 
 if [ ! -d /.composer ]; then
     mkdir /.composer
@@ -11,7 +8,7 @@ fi
 chmod -R ugo+rw /.composer
 
 FILE=/var/www/html/setup.sh
-if [[ -f "$FILE" ]]; then
+if test -f "$FILE"; then
     ./var/www/html/setup.sh
 fi
 
