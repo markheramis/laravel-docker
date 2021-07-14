@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+if [ ! -z "$WWWUSER" ]; then
+    usermod -u $WWWUSER sail
+fi
 
 if [ ! -d /.composer ]; then
     mkdir /.composer
