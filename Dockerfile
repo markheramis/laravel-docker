@@ -71,7 +71,7 @@ RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 
 RUN usermod -aG sudo sail
-RUN usermod -a -G www-data sail
+# RUN usermod -a -G www-data sail
 
 RUN chown $WWWUSER:$WWWUSER /var/www/html -R
 
