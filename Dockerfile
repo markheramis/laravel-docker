@@ -9,8 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apt-get update
 RUN apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev python2 cron vim
 RUN mkdir -p ~/.gnupg
 RUN chmod 600 ~/.gnupg
@@ -21,7 +20,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu hirsute main" > /etc/ap
 # Installing PHP Dependencies
 RUN apt-get update
 RUN apt-get install -y php8.0-cli php8.0-dev php8.0-xdebug \
-    php8.0-pgsql php8.0-curl php8.0-mysql php8.0-mbstring \
+    php8.0-pgsql php8.0-curl php8.0-mysql php8.0-mbstring \ 
     php8.0-xml php8.0-zip php8.0-bcmath php8.0-redis php8.0-swoole 
      
 # Installing Composer
