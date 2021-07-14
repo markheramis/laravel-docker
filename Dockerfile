@@ -47,11 +47,6 @@ RUN apt-get install -yq postgresql-client
 RUN apt-get -y autoremove
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN pecl channel-update https://pecl.php.net/channel.xml \
-    && pecl install swoole \
-    && pecl clear-cache \
-    && rm -rf /tmp/* /var/tmp/*
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 
 # create cron log
