@@ -23,16 +23,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu focal main" > /etc/apt/
 RUN apt-get update
 RUN apt-get install -y php8.0-dev php-mbstring php8.0-xml php8.0-bcmath php8.0-cli php8.0-curl php8.0-mysql php8.0-zip php8.0-redis
 # Installing Composer
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
-    HASH=`curl -sS https://composer.github.io/installer.sig` && \
-    php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { \
-        echo 'Installer verified'; \
-    } else { \
-        echo 'Installer corrupt'; unlink('composer-setup.php'); \
-    } echo PHP_EOL;"
-RUN php composer-setup.php
-RUN php -r "unlink('composer-setup.php');"
-
+RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 # setting up npm for global installation without sudo
 # http://stackoverflow.com/a/19379795/580268
 RUN MODULES="local" && \
@@ -40,7 +31,6 @@ RUN MODULES="local" && \
     echo "export PATH=\$HOME/$MODULES/bin:\$PATH" >> ~/.bashrc && \
     . ~/.bashrc && \
     mkdir ~/$MODULES
-
 # install Node.js and npm
 # https://gist.github.com/isaacs/579814#file-node-and-npm-in-30-seconds-sh
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && apt-get install -y nodejs
