@@ -14,7 +14,7 @@ chmod -R ugo+rw /.composer
 
 FILE=setup.sh
 if test -f "$FILE"; then
-    ./setup.sh
+    ./setup
 fi
 
 service cron start
