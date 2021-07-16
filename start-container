@@ -19,5 +19,4 @@ if test -f "$FILE"; then
 fi
 
 service cron start
-
-/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+service supervisor start
