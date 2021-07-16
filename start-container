@@ -10,9 +10,9 @@ fi
 
 chmod -R ugo+rw /.composer
 
-FILE=/var/www/html/setup.sh
+FILE=setup.sh
 if test -f "$FILE"; then
-    ./var/www/html/setup.sh
+    ./setup.sh
 fi
 
 service cron start
