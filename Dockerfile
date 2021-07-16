@@ -20,7 +20,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu hirsute main" > /etc/ap
 RUN apt-get update
 RUN apt-get install -y php8.0-cli php8.0-dev php8.0-xdebug \
     php8.0-pgsql php8.0-curl php8.0-mysql php8.0-mbstring \ 
-    php8.0-xml php8.0-zip php8.0-bcmath php8.0-redis php8.0-swoole 
+    php8.0-xml php8.0-zip php8.0-bcmath php8.0-redis
      
 # Installing Composer
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
