@@ -23,7 +23,7 @@ jobs:
         uses: rlespinasse/github-slug-action@v3.x
         id: DOCKERHUB_NAME_TAG
         run: |
-          echo "::set-output name=image_name_tag::${{ GITHUB_REPOSITORY }}:${{ GITHUB_REF_SLUG }}"
+          echo "::set-output name=image_name_tag::$GITHUB_REPOSITORY:$GITHUB_REF_SLUG"
         
       - name: Build and push to Dockerhub
         uses: docker/build-push-action@v2
