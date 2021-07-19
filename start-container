@@ -13,6 +13,7 @@ chmod -R ugo+rw /.composer
 FILE=setup
 if test -f "$FILE"; then
     echo "Running setup"
+    chmod 755 setup
     ./setup
 else
     echo "Setup does not exists"
