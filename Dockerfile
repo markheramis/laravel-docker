@@ -58,5 +58,5 @@ RUN chmod +x /usr/local/bin/start-container
 
 RUN crontab /etc/cron.d/app_cron
 
-EXPOSE 8000
+EXPOSE 80
 ENTRYPOINT ["start-container"]
