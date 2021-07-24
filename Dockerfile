@@ -4,6 +4,16 @@ LABEL maintainer="Mark Heramis"
 ARG WWWGROUP=1000
 
 WORKDIR /var/www/html
+
+COPY ./php/php.ini /etc/php/8.0/cli/conf.d/99-sail.ini
+COPY ./php/xdebug.ini /etc/php/8.0/mods-available/xdebug.ini
+COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./cronjob /etc/cron.d/app_cron
+COPY ./start-container /usr/local/bin/start-container
+
+RUN chmod 644 /etc/cron.d/app_cron
+RUN chmod +x /usr/local/bin/start-container
+
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -46,15 +56,6 @@ RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 # RUN usermod -aG sudo sail
 # RUN usermod -a -G www-data sail
-
-COPY ./php/php.ini /etc/php/8.0/cli/conf.d/99-sail.ini
-COPY ./php/xdebug.ini /etc/php/8.0/mods-available/xdebug.ini
-COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/default.conf
-COPY ./cronjob /etc/cron.d/app_cron
-COPY ./start-container /usr/local/bin/start-container
-
-RUN chmod 644 /etc/cron.d/app_cron
-RUN chmod +x /usr/local/bin/start-container
 
 RUN crontab /etc/cron.d/app_cron
 
