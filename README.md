@@ -4,32 +4,6 @@ Is a Docker project inspired by Laravel's Sail. This project is designed to work
 
 ## Project Objective
 Is to have a custom Dockerfile I can build a new Docker files on top of featuring all the tools that is used in a day-to-day basis.
-
-Tools:
-- curl
-- git
-- zip
-- unzip
-- supervisor
-- pytho2
-- cron
-- vim
-- php8
-- php8-0-cli
-- php8.0-dev
-- php8.0-curl 
-- php8.0-mysql
-- php8.0-mbstring
-- php8.0-xml
-- php8.0-zip
-- php8.0-redis
-- php8.0-xdebug
-- php8.0-intl
-- composer
-- node
-- npm
-- mysql-client
-
 ## Usage
 If you're building a new project you can build your new dockerfile on top of this as follows
 
