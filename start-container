@@ -15,6 +15,7 @@ if test -f "$FILE"; then
     echo "Running setup"
     chmod 755 setup
     ./setup
+    service supervisor start
 else
     echo "Setup does not exists"
 fi

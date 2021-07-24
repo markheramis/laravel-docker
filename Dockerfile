@@ -18,7 +18,7 @@ RUN apt-key adv --homedir ~/.gnupg --keyserver hkp://keyserver.ubuntu.com:80 --r
 RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu hirsute main" > /etc/apt/sources.list.d/ppa_ondrej_php.list
 # Installing PHP Dependencies
 RUN apt-get update
-RUN apt-get install -y php8.0-cli php8.0-dev php8.0-curl php8.0-mysql php8.0-mbstring php8.0-pgsql php8.0-xml php8.0-zip php8.0-redis php8.0-xdebug php8.0-intl
+RUN apt-get install -y php8.0-cli php8.0-dev php8.0-curl php8.0-mysql php8.0-mbstring php8.0-xml php8.0-zip php8.0-redis php8.0-xdebug php8.0-intl
 # Installing Composer
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 # Install NodeJS and NPM
@@ -49,7 +49,7 @@ RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 
 COPY ./php/php.ini /etc/php/8.0/cli/conf.d/99-sail.ini
 COPY ./php/xdebug.ini /etc/php/8.0/mods-available/xdebug.ini
-COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/default.conf
 COPY ./cronjob /etc/cron.d/app_cron
 COPY ./start-container /usr/local/bin/start-container
 
