@@ -9,6 +9,9 @@ services:
         args:
           WWWGROUP: ${WWWGROUP:-1000}
     image: laravel/docker
+    entrypoint: [/bin/bash]
+    stdin_open: true  # docker run -i
+    tty: true         # docker run -t
     networks:
       - "my_network"
 networks:
