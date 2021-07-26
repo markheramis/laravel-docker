@@ -10,8 +10,6 @@ fi
 
 chmod -R ugo+rw /.composer
 
-service cron start &
-
 FILE=setup
 if test -f "$FILE"; then
     echo "Running setup"
