@@ -23,9 +23,7 @@ RUN apt-get install -y \
     supervisor \
     libcap2-bin \
     libpng-dev \
-    python2 \
-    cron \
-    vim
+    python2
 
         
 RUN mkdir -p ~/.gnupg
@@ -53,8 +51,8 @@ RUN apt-get install -y \
     php8.0-igbinary \
     php8.0-ldap \
     php8.0-redis \
-    php8.0-swoole
-    # php8.0-xdebug
+    php8.0-swoole \
+    php8.0-xdebug
 
 RUN apt-get install -yq mysql-client
 # RUN apt-get install -yq postgresql-client
@@ -68,20 +66,13 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 COPY ./php/php.ini /etc/php/8.0/cli/conf.d/99-sail.ini
 COPY ./php/xdebug.ini /etc/php/8.0/mods-available/xdebug.ini
 COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY ./cronjob /etc/cron.d/app_cron
 COPY ./start-container /usr/local/bin/start-container
 
 RUN chmod 644 /etc/cron.d/app_cron
 RUN chmod +x /usr/local/bin/start-container
 
-# create cron log
-RUN touch /var/log/cron.log
-
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
-
-
-RUN crontab /etc/cron.d/app_cron
 
 EXPOSE 80
 # USER sail
