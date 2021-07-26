@@ -68,7 +68,6 @@ COPY ./php/xdebug.ini /etc/php/8.0/mods-available/xdebug.ini
 COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./start-container /usr/local/bin/start-container
 
-RUN chmod 644 /etc/cron.d/app_cron
 RUN chmod +x /usr/local/bin/start-container
 
 RUN groupadd --force -g $WWWGROUP sail
