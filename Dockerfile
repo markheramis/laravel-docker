@@ -53,23 +53,9 @@ RUN apt-get install -y \
     php8.0-igbinary \
     php8.0-ldap \
     php8.0-redis \
-    php8.0-swoole \
-    php8.0-xdebug
+    php8.0-swoole
+    # php8.0-xdebug
 
-
-# Installing Composer
-# RUN php -r "readfile('http://getcomposer.org/installer');" | \
-#    php -- --install-dir=/usr/bin/ --filename=composer
-# Install NodeJS and NPM
-# RUN curl -sL https://deb.nodesource.com/setup_16.x | \
-#     bash - && apt-get install -y nodejs
-# Install YARN
-# RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-# RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
-# RUN apt-get update
-# RUN apt-get install -y yarn
-# ADD DATABASE CLIENT
-# @todo: probably add conditional here to decide if to use mysql or postgresql client
 RUN apt-get install -yq mysql-client
 # RUN apt-get install -yq postgresql-client
 
