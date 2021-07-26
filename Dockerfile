@@ -93,11 +93,10 @@ RUN touch /var/log/cron.log
 
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
-# RUN usermod -aG sudo sail
-# RUN usermod -a -G www-data sail
+
 
 RUN crontab /etc/cron.d/app_cron
 
 EXPOSE 80
-USER sail
+# USER sail
 ENTRYPOINT ["start-container"]
