@@ -18,4 +18,3 @@ if test -f "$FILE"; then
 else
     echo "Setup does not exists"
 fi
-service supervisor start
