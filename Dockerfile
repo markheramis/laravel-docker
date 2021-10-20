@@ -1,4 +1,4 @@
-FROM ubuntu:21.04
+FROM ubuntu:impish-20211015
 
 LABEL maintainer="Mark Heramis"
 ARG WWWGROUP=1000
