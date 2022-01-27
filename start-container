@@ -10,14 +10,12 @@ fi
 
 chmod -R ugo+rw /.composer
 
-service cron start &
-
 FILE=setup
 if test -f "$FILE"; then
     echo "Running setup"
     chmod 755 setup
     ./setup
-    service supervisor start
 else
     echo "Setup does not exists"
 fi
+service supervisor start
