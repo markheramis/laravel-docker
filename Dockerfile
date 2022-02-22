@@ -2,7 +2,9 @@ FROM ubuntu:21.10
 
 LABEL maintainer="Mark Heramis"
 
-ARG WWWGROUP
+ARG WWWGROUP=1000
+ARG WWWUSER=1000
+
 ARG NODE_VERSION=16
 
 WORKDIR /var/www/html
