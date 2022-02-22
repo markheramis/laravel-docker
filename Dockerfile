@@ -21,7 +21,7 @@ RUN apt-key adv --homedir ~/.gnupg --keyserver hkp://keyserver.ubuntu.com:80 --r
     && apt-key adv --homedir ~/.gnupg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C300EE8C \
     && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu impish main" > /etc/apt/sources.list.d/ppa_ondrej_php.list
 RUN apt-get update
-RUN apt-get install -y 
+RUN apt-get install -y \
     php8.1-cli \
     php8.1-dev \
     php8.1-pgsql \
