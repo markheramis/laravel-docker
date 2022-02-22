@@ -3,6 +3,7 @@ FROM ubuntu:21.10
 LABEL maintainer="Mark Heramis"
 ARG WWWGROUP=1000
 
+RUN mkdir /var/www/html
 WORKDIR /var/www/html
 
 ENV DEBIAN_FRONTEND noninteractive
