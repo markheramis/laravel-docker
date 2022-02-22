@@ -63,9 +63,10 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.1
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail
 
-COPY start-container /usr/local/bin/start-container
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
+COPY ./php/php.ini /etc/php/8.1/cli/conf.d/99-sail.ini
+COPY ./php/xdebug.ini /etc/php/8.1/mods-available/xdebug.ini
+COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./start-container /usr/local/bin/start-container
 RUN chmod +x /usr/local/bin/start-container
 
 EXPOSE 80
