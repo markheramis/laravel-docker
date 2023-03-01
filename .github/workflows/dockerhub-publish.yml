@@ -1,7 +1,7 @@
 name: DockerHub Publish
 on:
   push
-
+  master
 jobs:
   dockerhub:
     runs-on: ubuntu-latest
