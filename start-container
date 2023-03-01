@@ -5,11 +5,9 @@ chmod -R ugo+rw /.composer
 if test -f "setup"; then
     echo "Running setup"
     chmod 755 setup
-    su - sail
     ./setup
 else
     echo "Setup does not exists"
 fi
-su root
 # Start Supervisor
 service supervisor start
