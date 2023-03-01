@@ -73,17 +73,5 @@ COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./start-container /usr/local/bin/start-container
 RUN chmod +x /usr/local/bin/start-container
 
-USER sail
-
-RUN if [ ! -z "$WWWUSER" ]; then usermod -u $WWWUSER sail fi
-RUN if [ ! -d /.composer ]; then mkdir /.composer fi
-RUN chmod -R ugo+rw /.composer
-
-RUN if test -f "setup"; then \
-        echo "Running setup" && \
-        chmod 755 setup && \
-        su - sail && \
-        ./setup \
-    else echo "Setup does not exists" fi
 EXPOSE 80
 ENTRYPOINT ["start-container"]
